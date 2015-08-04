@@ -1,0 +1,31 @@
+.site-nav {
+
+	ul {
+		@include cf;
+		list-style: none;
+		line-height: 1;
+	}
+
+	li {
+		@include push--top($base-spacing-unit / 2);
+
+		&:first-child {
+			@include flush--top;
+		}
+
+		@include mq("tablet-small") {
+			@include flush--top;
+			@include push--left($base-spacing-unit / 1.5);
+			float: left;
+
+			&:first-child {
+				@include flush--left;
+			}
+
+		}
+	}
+
+	a {
+		font-weight: $w-normal;
+	}
+}
