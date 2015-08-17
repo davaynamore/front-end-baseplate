@@ -2,6 +2,7 @@
 	@include soft--ends($base-spacing-unit / 1.5);
 	background-color: $c-black;
 	color: $c-white;
+	text-align: center;
 	z-index: z('site-header');
 
 	a {
@@ -15,11 +16,12 @@
 	}
 
 	&__nav {
-		@include push--top($base-spacing-unit / 2);
+		@include push--top($base-spacing-unit / 1.5);
 	}
 
 	@include mq("tablet-small") {
 		@include soft--ends($base-spacing-unit / 1.2);
+		text-align: left;
 
 		> * {
 			@include cf;

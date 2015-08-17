@@ -1,0 +1,22 @@
+.site-takeover {
+	@include soft--ends($base-spacing-unit * 2);
+	background-color: $c-grey-light;
+	text-align: center;
+
+	@include mq("tablet") {
+		@include soft--ends($base-spacing-unit * 3);
+	}
+
+	@include mq("desktop") {
+		@include soft--ends($base-spacing-unit * 5);
+	}
+
+	@include mq("desktop-wide") {
+		@include soft--ends($base-spacing-unit * 7);
+	}
+
+	p,
+	.button {
+		@include push--top(1.5em);
+	}
+}

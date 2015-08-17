@@ -4,18 +4,20 @@
 		@include cf;
 		list-style: none;
 		line-height: 1;
+		text-align: center;
 	}
 
 	li {
-		@include push--top($base-spacing-unit / 2);
+		@include soft--sides($base-spacing-unit / 4);
+		display: inline-block;
 
 		&:first-child {
 			@include flush--top;
 		}
 
 		@include mq("tablet-small") {
-			@include flush--top;
 			@include push--left($base-spacing-unit / 1.5);
+			@include hard--sides;
 			float: left;
 
 			&:first-child {

@@ -22,14 +22,14 @@
 */
 
 html {
-	font-size: 10px;
+	font-size: 8px;
 	min-height: 100%;
 	overflow-y: scroll;
 	-webkit-text-size-adjust: none;
 
-	// @include mq("phablet") {
-	// 	font-size: 11px;
-	// }
+	@include mq("phone-wide") {
+		font-size: 10px;
+	}
 
 	// @include mq("tablet-small") {
 	// 	font-size: 10px;
@@ -39,9 +39,9 @@ html {
 	// 	font-size: 11px;
 	// }
 
-	// @include mq("desktop") {
-	// 	font-size: 12px;
-	// }
+	@include mq("desktop") {
+		font-size: 12px;
+	}
 }
 
 body {
@@ -52,6 +52,9 @@ body {
 	line-height: $base-line-height;
 }
 
+.site-wrapper {
+	height: 100%;
+}
 
 
 /*--------------------------------

@@ -1,0 +1,23 @@
+.section {
+	@include soft--ends;
+
+	@include mq("tablet-small") {
+		@include soft--ends($base-spacing-unit * 1.25);
+	}
+
+	@include mq("tablet-wide") {
+		@include soft--ends($base-spacing-unit * 1.5);
+	}
+
+	@include mq("desktop-wide") {
+		@include soft--ends($base-spacing-unit * 2);
+	}
+
+	&:nth-child(even) {
+		background-color: lighten($c-grey-light, 10%);
+	}
+
+	&__content {
+		@include push--top;
+	}
+}

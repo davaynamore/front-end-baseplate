@@ -544,10 +544,52 @@ textarea:focus {
 
 	Media Queries
 
+	used for outputting content either between media query tags, or without (for fixed-width.scss)
+
+	example: basic usage
+
+	.element {
+		width: 50%;
+
+		@include mq("tablet-small") {
+			width: 20%;
+		}
+	}
+
+	example: using max-width
+
+	.element {
+		width: 50%;
+
+		@include mq("tablet-small", "max") {
+			width: 20%;
+		}
+	}
+
 */
 /*--------------------------------
 
 	Margin / Padding Quick Resets
+
+	example: top margin
+	.element {
+		@include push--top($base-spacing-unit);
+	}
+
+	example: top & bottom margin
+	.element {
+		@include push--ends($base-spacing-unit);
+	}
+
+	example: left & right margin
+	.element {
+		@include push--sides($base-spacing-unit);
+	}
+
+	example: remove a top margin
+	.element {
+		@include flush--top;
+	}
 
 */
 /*--------------------------------
@@ -572,6 +614,104 @@ textarea:focus {
 /*--------------------------------
 
 	Retina images
+
+	example:
+
+	.element {
+		@include retina {
+			background-image: url(../img/background@2x.png);
+		}
+	}
+
+*/
+/*--------------------------------
+
+	Content margins
+
+	fore removing first/last child margins
+
+	example: default
+	.element {
+		@include content-margins;
+	}
+
+	output:
+	.element > *:first-child {
+		margin-top: 0;
+	}
+	.element > *:last-child {
+		margin-bottom: 0;
+	}
+
+	example: empty selector
+	.element {
+		@include content-margins(false);
+	}
+
+	output:
+	.element:first-child {
+		margin-top: 0;
+	}
+	.element:last-child {
+		margin-bottom: 0;
+	}
+
+*/
+/*--------------------------------
+
+	CSS Triangle
+
+	used for creating CSS only triangles
+
+	example:
+	.element {
+
+		&:before {
+			@include css-triangle(blue, down);
+		}
+	}
+
+*/
+/*--------------------------------
+
+	Hide text
+
+	example:
+
+	.element {
+		@include hide-text;
+	}
+
+*/
+/*--------------------------------
+
+	Responsive ratio
+
+	Used for creating scalable elements that maintain the same ratio
+
+	example:
+	.element {
+		@include responsive-ratio(400, 300);
+	}
+
+*/
+/*--------------------------------
+
+	Typography
+
+	Text image replacement, with responsive ratio
+
+	HTML:
+
+	<h1 class="element">
+		<span>Text to replace</span>
+	</h1>
+
+	example:
+	.element {
+		@include typography(200, 50, 'hello-world');
+	}
+
 
 */
 /*--------------------------------
@@ -3223,10 +3363,11 @@ textarea:focus {
 
 */
 html {
-  font-size: 10px;
+  font-size: 8px;
   min-height: 100%;
   overflow-y: scroll;
-  -webkit-text-size-adjust: none; }
+  -webkit-text-size-adjust: none;
+  font-size: 10px; }
 
 body {
   background-color: #fff;
@@ -3234,6 +3375,9 @@ body {
   font-family: Helvetica, Arial, sans-serif;
   font-size: 1.6rem;
   line-height: 1.5; }
+
+.site-wrapper {
+  height: 100%; }
 
 /*--------------------------------
 
@@ -3858,18 +4002,34 @@ form ul {
     .message--positive a {
       color: #24b35d; }
 
+.section {
+  padding-top: 2.4rem;
+  padding-bottom: 2.4rem;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+  padding-top: 3.6rem;
+  padding-bottom: 3.6rem; }
+  .section:nth-child(even) {
+    background-color: #f7f7f7; }
+  .section__content {
+    margin-top: 2.4rem; }
+
 .site-nav ul {
   list-style: none;
-  line-height: 1; }
+  line-height: 1;
+  text-align: center; }
   .site-nav ul:after {
     content: "";
     display: table;
     clear: both; }
 
 .site-nav li {
-  margin-top: 1.2rem;
-  margin-top: 0;
+  padding-left: 0.6rem;
+  padding-right: 0.6rem;
+  display: inline-block;
   margin-left: 1.6rem;
+  padding-left: 0;
+  padding-right: 0;
   float: left; }
   .site-nav li:first-child {
     margin-top: 0; }
@@ -3981,15 +4141,17 @@ form ul {
   padding-bottom: 1.6rem;
   background-color: #1a1a1a;
   color: #fff;
+  text-align: center;
   z-index: 2;
   padding-top: 2rem;
-  padding-bottom: 2rem; }
+  padding-bottom: 2rem;
+  text-align: left; }
   .site-header a {
     color: #fff; }
   .site-header__nav-trigger {
     display: none; }
   .site-header__nav {
-    margin-top: 1.2rem; }
+    margin-top: 1.6rem; }
   .site-header > *:after {
     content: "";
     display: table;
@@ -4002,6 +4164,17 @@ form ul {
 
 .site-footer {
   z-index: 1; }
+
+.site-takeover {
+  padding-top: 4.8rem;
+  padding-bottom: 4.8rem;
+  background-color: #ddd;
+  text-align: center;
+  padding-top: 7.2rem;
+  padding-bottom: 7.2rem; }
+  .site-takeover p,
+  .site-takeover .button {
+    margin-top: 1.5em; }
 
 @media print {
   * {
