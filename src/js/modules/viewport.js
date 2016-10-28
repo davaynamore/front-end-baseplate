@@ -4,6 +4,8 @@ var width = 0,
 	prevHeight,
 	listeners = {},
 	timer = null,
+	variables = require('json!../../variables.json'),
+	breakpoints = {},
 	update = function(){
 
 		prevWidth = width;
@@ -27,6 +29,16 @@ $(window).on('resize', function(){
 
 update();
 
+Object.keys(variables.breakpoints).forEach(function(name){
+	var value = variables.breakpoints[name];
+
+	if( variables['media-query-units'] === 'em' ){
+		value /= variables['browser-default-font-size'] || 16;
+	}
+
+	breakpoints[name] = value;
+});
+
 module.exports = {
 	width: function(){
 		return width;
@@ -39,5 +51,28 @@ module.exports = {
 	},
 	removeListener: function(name){
 		delete listeners[name];
+	},
+	mq: function(name, max){
+		var
+			value = breakpoints[name],
+			ems = variables['media-query-units'] === 'em';
+
+		if( !value ){
+			console.warn('Unknown breakpoint name');
+			return false;
+		}
+
+		if( max ){
+			value -= ems ? 0.01 : 1;
+		}
+
+		return Modernizr.mq([
+			'only screen and (',
+			(max ? 'max' : 'min'),
+			'-width: ',
+			value,
+			ems ? 'em' : 'px',
+			')',
+		].join(''));
 	},
 };
